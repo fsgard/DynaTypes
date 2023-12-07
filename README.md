@@ -1,0 +1,2 @@
+# TypeJS
+Typed js code
