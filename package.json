@@ -1,0 +1,26 @@
+{
+  "name": "typejs",
+  "version": "1.0.0",
+  "description": "Dynamic typed js code",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fsgard/TypeJS.git"
+  },
+  "keywords": [
+    "Javascript",
+    "Type",
+    "Interface",
+    "Enum",
+    "Class"
+  ],
+  "author": "Fabien SGARD",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fsgard/TypeJS/issues"
+  },
+  "homepage": "https://github.com/fsgard/TypeJS#readme"
+}
