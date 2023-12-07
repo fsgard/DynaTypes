@@ -30,7 +30,7 @@ export default class TypeJS {
 
         if (TypeJS.mode == 'dev') {
             Object.entries(TypeJS.declare).forEach(([name, declaration]) => {
-                declaration.declare(name, declaration);
+                declaration.declare(name);
             });
 
             Object.values(TypeJS.classes).forEach(overrideClass => {
