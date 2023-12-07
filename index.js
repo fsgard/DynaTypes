@@ -30,8 +30,7 @@ export default class TypeJS {
 
         if (TypeJS.mode == 'dev') {
             Object.entries(TypeJS.declare).forEach(([name, declaration]) => {
-                if (declaration instanceof Enum) Enum.declare(name, declaration)
-                else if (declaration instanceof TypeDeclaration) TypeDeclaration.declare(name, declaration)
+                declaration.declare(name, declaration);
             });
 
             Object.values(TypeJS.classes).forEach(overrideClass => {
