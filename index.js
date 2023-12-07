@@ -2,7 +2,7 @@ import Interface from "./lib/Interface";
 import ArgumentsController from "./lib/ArgumentsController";
 import { TypeJSErrorMode, TypeJSError, ArgumentsControllerError, InterfaceError } from "./lib/Errors";
 import Class from "./lib/Class";
-import { Enum, TypeDeclaration } from "./lib/Types";
+import { Enum, TypeDeclaration, T } from "./lib/Types";
 
 export default class TypeJS {
     static mode = 'dev';
@@ -51,4 +51,4 @@ export default class TypeJS {
 
 global[TypeJS.prefix] = TypeJS;
 
-export { TypeJSErrorMode, TypeJSError, ArgumentsController, ArgumentsControllerError, Interface, InterfaceError };
+export { TypeJSErrorMode, TypeJSError, ArgumentsController, ArgumentsControllerError, Interface, InterfaceError, Enum, TypeDeclaration, T };
