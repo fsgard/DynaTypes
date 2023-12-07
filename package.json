@@ -1,5 +1,5 @@
 {
-  "name": "typejs",
+  "name": "dyna-types",
   "version": "1.0.0",
   "description": "Dynamic typed js code",
   "main": "index.js",
