@@ -4,16 +4,6 @@ import { TypeJSErrorMode, TypeJSError, ArgumentsControllerError, InterfaceError 
 import Class from "./lib/Class";
 import { Enum, TypeDeclaration } from "./lib/Types";
 
-
-
-function hashCode(s) {
-    var hash = 5381, i = s.length
-    while (i)
-        hash = (hash * 33) ^ s.charCodeAt(--i)
-    return hash >>> 0;
-}
-
-
 export default class TypeJS {
     static mode = 'dev';
     static errorMode = TypeJSErrorMode.default;
