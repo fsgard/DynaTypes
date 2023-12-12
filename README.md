@@ -81,9 +81,10 @@ class Person {
 ```
 
 - Interface
+
 Class with multi-interfaces implementation
 ```javascript
-import { Enum } from "dyna-types";
+import { Enum, Interface } from "dyna-types";
 export const Language = new Enum({
     'FR': 'french',
     'EU': 'English',
