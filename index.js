@@ -2,6 +2,7 @@ import ArgumentsController from "./lib/ArgumentsController";
 import { TypeJSErrorMode, TypeJSError, ArgumentsControllerError, InterfaceError, ClassError } from "./lib/Errors";
 import Class from "./lib/Class";
 import { Enum, MetaType, T, TypeJSType } from "./lib/Types";
+import { implementInterfaceMethod } from "./lib/Utils";
 
 export default class ScriptTypeJS {
     static mode = 'dev';
@@ -30,24 +31,25 @@ export default class ScriptTypeJS {
         }
     }
 
-    static settings(options) {
-        if (options) {
-            ScriptTypeJS.mode = options.mode ?? 'dev';
-            ScriptTypeJS.errorMode = options.errorMode ?? '';
-            TypeJSError.mode = ScriptTypeJS.errorMode;
-            ScriptTypeJS.prefix = options.prefix ?? ScriptTypeJS.prefix;
-        }
+    static start(options) {
+
+        TypeJSError.mode = ScriptTypeJS.errorMode;
+
 
         if (ScriptTypeJS.mode == 'dev') {
             Object.entries(ScriptTypeJS.types).forEach(([name, declaration]) => {
                 if (declaration instanceof TypeJSType) declaration.declare(name);
                 else Class.construct(declaration);
             });
+
+            global[ScriptTypeJS.prefix] = ScriptTypeJS;
         }
         return ScriptTypeJS;
     }
 
     static declare(objects) {
+        if (ScriptTypeJS.mode !== 'dev') return { implements: () => { } };
+
         if (typeof objects === 'function') {
             ScriptTypeJS.types[objects.name] = objects;
             return new Class(objects);
@@ -55,6 +57,8 @@ export default class ScriptTypeJS {
 
         Object.entries(objects).forEach(([name, obj]) => {
             ScriptTypeJS.types[name] = obj;
+            if (obj instanceof TypeJSType) obj.declare(name);
+            else Class.construct(obj);
         });
 
     }
@@ -90,7 +94,5 @@ export default class ScriptTypeJS {
         }
     }
 }
-
-global[ScriptTypeJS.prefix] = ScriptTypeJS;
 
 export { TypeJSErrorMode, TypeJSError, ArgumentsController, ArgumentsControllerError, Class, ClassError, InterfaceError, Enum, MetaType, T };
