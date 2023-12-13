@@ -14,11 +14,24 @@ export default class TypeJS {
     static instanciationPropertyName = TypeJS.prefix + '_instantiate';
     static globalStatePropertyName = TypeJS.prefix + 'state';
     static bundlerIdentifier = {
-        WEBPACK: /_(.*)__WEBPACK/
+        WEBPACK: {
+            regex: /(_(.*)__WEBPACK.*__)(\.((.*)(\[.*\])|.*)|.*)/,
+            test: function (type) {
+                const match = type.match(this.regex);
+
+                if (match) {
+                    return {
+                        module: match[1],
+                        parent: match[2],
+                        type: match[4] || match[2]
+                    }
+                }
+                return false;
+            }
+        }
     }
 
     static settings(options) {
-        console.log('Init Type JS');
         if (options) {
             TypeJS.mode = options.mode ?? 'dev';
             TypeJS.errorMode = options.errorMode ?? '';
@@ -59,14 +72,20 @@ export default class TypeJS {
         if (!type) return undefined;
         ArgumentsController.declare(String).validate(arguments);
 
-        for (const [bundler, regex] of Object.entries(TypeJS.bundlerIdentifier)) {
-            const match = type.match(regex);
-            if (match) type = match[1];
+        for (const [bundler, description] of Object.entries(TypeJS.bundlerIdentifier)) {
+            const result = description.test(type)
+            if (result) type = result.type
         }
 
         if (TypeJS.types[type]) return `${TypeJS.prefix}.types.${type}`;
         else if (TypeJS.interfaces[type]) return `${TypeJS.prefix}.interfaces.${type}`;
-        else return type
+        else {
+            const isObjectStaticProperty = type.match(/^(.*)\["(.*)"\]$/)
+            if (isObjectStaticProperty) {
+                if (TypeJS.types[isObjectStaticProperty[1]]) return `${TypeJS.prefix}.types.${type}`;
+            }
+            return type
+        }
     }
 }
 
