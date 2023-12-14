@@ -1,8 +1,8 @@
 import ArgumentsController from "./lib/ArgumentsController";
 import { TypeJSErrorMode, TypeJSError, ArgumentsControllerError, InterfaceError, ClassError } from "./lib/Errors";
 import Class from "./lib/Class";
-import { Enum, MetaType, T, TypeJSType } from "./lib/Types";
-import { implementInterfaceMethod } from "./lib/Utils";
+import { Enum, Type, T, TypeJSType } from "./lib/Types";
+
 
 export default class ScriptTypeJS {
     static mode = 'dev';
@@ -31,19 +31,17 @@ export default class ScriptTypeJS {
         }
     }
 
-    static start(options) {
-
+    static apply() {
         TypeJSError.mode = ScriptTypeJS.errorMode;
-
 
         if (ScriptTypeJS.mode == 'dev') {
             Object.entries(ScriptTypeJS.types).forEach(([name, declaration]) => {
                 if (declaration instanceof TypeJSType) declaration.declare(name);
                 else Class.construct(declaration);
             });
-
             global[ScriptTypeJS.prefix] = ScriptTypeJS;
         }
+
         return ScriptTypeJS;
     }
 
@@ -61,6 +59,12 @@ export default class ScriptTypeJS {
             else Class.construct(obj);
         });
 
+    }
+
+    static checkInstanciation(instance) {
+        if (!instance[ScriptTypeJS.instanciationPropertyName]) {
+            Class.instanciate.call(ScriptTypeJS, instance);
+        }
     }
 
     static getTypeJSPrefix() {
@@ -95,4 +99,4 @@ export default class ScriptTypeJS {
     }
 }
 
-export { TypeJSErrorMode, TypeJSError, ArgumentsController, ArgumentsControllerError, Class, ClassError, InterfaceError, Enum, MetaType, T };
+export { TypeJSErrorMode, TypeJSError, ArgumentsController, ArgumentsControllerError, Class, ClassError, InterfaceError, Enum, Type, T };

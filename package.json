@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fsgard/TypeJS.git"
+    "url": "git+https://github.com/fsgard/.git"
   },
   "keywords": [
     "Javascript",
@@ -20,7 +20,7 @@
   "author": "Fabien SGARD",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fsgard/TypeJS/issues"
+    "url": "https://github.com/fsgard//issues"
   },
-  "homepage": "https://github.com/fsgard/TypeJS#readme"
+  "homepage": "https://github.com/fsgard/#readme"
 }
