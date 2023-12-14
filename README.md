@@ -167,7 +167,7 @@ ScriptTypeJS.declare({ EnglishSpeaker }).implements(Speaker, Translator);
 ```
 > [!NOTE]
 > In this case if EnglishSpeaker class doesn't respect the contract of Translator and Speaker, an error is throwed: 
-> `#FF0000` Uncaught InterfaceError: Methods [translate] are not defined on class EnglishSpeaker (class EnglishSpeaker implement interface Function)
+'#FF0000' Uncaught InterfaceError: Methods [translate] are not defined on class EnglishSpeaker (class EnglishSpeaker implement interface Function)
 
 ## In Action
 
