@@ -175,7 +175,7 @@ class EnglishSpeaker {
 
 // Declare in ScriptTypeJS
 // Interfaces are automatically declared with their implementations and could be uses as a type
-ScriptTypeJS.declare({ EnglishSpeaker }).implements(Speaker, Translator);
+ScriptTypeJS.declare(EnglishSpeaker).implements(Speaker, Translator);
 ```
 
 ## In Action
@@ -196,7 +196,7 @@ class EnglishSpeaker {
     }
 }
 
-ScriptTypeJS.declare({ EnglishSpeaker }).implements(Speaker, Translator);
+ScriptTypeJS.declare(EnglishSpeaker).implements(Speaker, Translator);
 ```
 
 - Bad change
@@ -213,7 +213,7 @@ class EnglishSpeaker {
     }
 }
 
-ScriptTypeJS.declare({ EnglishSpeaker }).implements(Speaker, Translator);
+ScriptTypeJS.declare(EnglishSpeaker).implements(Speaker, Translator);
 ```
 Throw error:
 > Methods [translate] are not defined on class EnglishSpeaker (class EnglishSpeaker implement interface Translator)
@@ -233,7 +233,7 @@ class EnglishSpeaker {
     }
 }
 
-ScriptTypeJS.declare({ EnglishSpeaker }).implements(Speaker, Translator);
+ScriptTypeJS.declare(EnglishSpeaker).implements(Speaker, Translator);
 ```
 Throw error:
 > Argument #name are wrong in function say (text,person,at = Date()) declaration: to expected for name of argument, person is given
