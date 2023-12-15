@@ -174,7 +174,7 @@ class EnglishSpeaker {
 
 // Declare in ScriptTypeJS
 // Interfaces are automatically declared with their implementations and could be uses as a type
-ScriptTypeJS.declare({ EnglishSpeaker }).implements(Speaker, Translator);
+ScriptTypeJS.declare(EnglishSpeaker).implements(Speaker, Translator);
 ```
 
 ## In Action
@@ -195,7 +195,7 @@ class EnglishSpeaker {
     }
 }
 
-ScriptTypeJS.declare({ EnglishSpeaker }).implements(Speaker, Translator);
+ScriptTypeJS.declare(EnglishSpeaker).implements(Speaker, Translator);
 ```
 
 - Bad change
