@@ -282,7 +282,23 @@ englishSpeaker.say('Hello my friend', 'john');
 Throw error:
 > Method run: Argument person (#2) must be a Person, String is given
 
+## BABEL
+If you use babel you must exclude the transform-parameter plugin.
+
+```javascript
+"presets": [
+        [
+            "@babel/preset-env",
+            {                
+                "exclude": ["transform-parameters"]
+            }
+        ],
+    ]
+```
+
+
+
 ## Limitation
 Instance type checking is automatically applied when a first method or setter/getter call is made.
 In the case of a direct assignment of a property without any method call, getter or setter beforehand, the check is not performed.
-To fix this, you can use the static **Class.instantiate(this)** method at the end of the constructor or the static factory method
+To fix this, you can use the static **Class.instanciate(this)** method at the end of the constructor or the static factory method
